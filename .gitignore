@@ -240,3 +240,11 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Some Data files
+MapleGrab/MapleGrab/CapturedData/*.bmp
+MapleGrab/MapleGrab/CapturedData/*.txt
+MapleGrab/MapleGrab/ParsedArrow/*.bmp
+MapleGrab/MapleGrab/ParsedArrow/*.txt
+MapleGrab/MapleGrab/TaggedArrow/*.bmp
+MapleGrab/MapleGrab/TaggedArrow/*.txt
