@@ -6,6 +6,7 @@ print("""
 Press 'c' to collect data
 Press 'p' to parse arrows
 Press 't' to tag data
+Press 'r' to pack the data into .tfrecords
 """)
 command = input()
 

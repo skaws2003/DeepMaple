@@ -27,6 +27,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ArrowTagger.py" />
+    <Compile Include="ArrowWrapper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FrontHandler_v2.py" />
     <Compile Include="MapleGrab.py">
       <SubType>Code</SubType>
