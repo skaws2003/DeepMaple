@@ -9,6 +9,7 @@ import ArrowTagger
 
 This turns arrow images to .tfrecords
 Not on develop now: there are very few data(~4000 pics) so there is less reason to speed up training
+Might do it later.
 
 """
 

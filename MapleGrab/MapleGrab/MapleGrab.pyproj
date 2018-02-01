@@ -26,6 +26,9 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ArrowNet.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ArrowTagger.py" />
     <Compile Include="ArrowWrapper.py">
       <SubType>Code</SubType>
