@@ -1,0 +1,17 @@
+
+·절대위치
+
+"방향키" 위치: 303,118(x,y)
+- x ranges
+1st arrow : 214-275
+2nd arrow : 307-368
+3rd arrow : 400-461
+4th arrow : 493-554
+- y range : 197-258
+
+
+·상대위치
+1st arrow : (-89,79) ~ (-28,140)
+2nd arrow : 
+3rd arrow : 
+4th arrow : 

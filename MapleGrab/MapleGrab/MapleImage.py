@@ -126,7 +126,7 @@ class MapleCollect(MapleCapture):
         # Now Capture
         img = []        # This will store images of arrows
         for i in range(4):
-            arro = y_img[pos_comment[1]+MapleCollect.ARROW[i][1] : pos_comment[1]+MapleCollect.ARROW[i][3] , pos_comment[0]+MapleCollect.ARROW[i][0] : pos_comment[0]+MapleCollect.ARROW[i][2]]
+            arro = scr[pos_comment[1]+MapleCollect.ARROW[i][1] : pos_comment[1]+MapleCollect.ARROW[i][3] , pos_comment[0]+MapleCollect.ARROW[i][0] : pos_comment[0]+MapleCollect.ARROW[i][2]]
             img.append(arro)
         return img
 
