@@ -30,6 +30,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ArrowTagger.py" />
+    <Compile Include="ArrowTrain.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ArrowWrapper.py">
       <SubType>Code</SubType>
     </Compile>
