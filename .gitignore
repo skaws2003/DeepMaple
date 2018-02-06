@@ -248,3 +248,6 @@ MapleGrab/MapleGrab/ParsedArrow/*.bmp
 MapleGrab/MapleGrab/ParsedArrow/*.txt
 MapleGrab/MapleGrab/TaggedArrow/*.bmp
 MapleGrab/MapleGrab/TaggedArrow/*.txt
+MapleGrab/MapleGrab/Arrow/*.bmp
+MapleGrab/MapleGrab/Arrow/*.txt
+MapleGrab/MapleGrab/tmp/
