@@ -14,6 +14,7 @@ if __name__ == '__main__':
     Enter 'dir' to tag arrow direction
     Enter 'cla' to classify arrow type
     Enter 'rec' to pack the data into .tfrecords
+    Enter 'edg' to detect edges
     """)
     command = input()
     

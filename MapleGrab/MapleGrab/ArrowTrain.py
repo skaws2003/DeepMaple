@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import ArrowNet
 import ArrowClassifier
-import MapleGrab
+import ArrowEdge
 import matplotlib.pyplot as plt
 import random
 import cv2
@@ -14,15 +14,19 @@ train_batch_size = 16
 val_batch_size = 50
 training_epoches = 500
 saving_epoches = 10
-ARROW_PATH = MapleGrab.EDGE_PATH
+ARROW_PATH = ArrowEdge.EDGE_PATH
 directions = ['left','right','up','down']
 types = ['full','empty']
 
+print("Collecting image addrs...")
 addrs = glob.glob(ARROW_PATH+"*.bmp")
 random.shuffle(addrs)
 labels = []
 images = []
+cnt=0
 for addr in addrs:
+    if cnt%1000==0:
+        print("Reaing images:(%d/%d)"%(cnt,len(addrs)))
     images.append(cv2.imread(addr,0))
     if 'left' in addr:
         if 'full' in addr:
@@ -44,9 +48,7 @@ for addr in addrs:
             labels.append([0,0,0,0,0,0,1,0])
         elif 'empty' in addr:
             labels.append([0,0,0,0,0,0,0,1])
-
-for i in range(len(images)):
-    images[i] = cv2.cvtColor(images[i], cv2.COLOR_BGR2HSV)
+    cnt += 1
 
 train_images = images[:int(0.6*len(images))]
 train_labels = labels[:int(0.6*len(labels))]
@@ -104,4 +106,6 @@ while model.train_step < training_epoches:
 print(np.mean(accuracy_log))
 plt.figure()
 plt.plot(accuracy_log)
+plt.figure()
+plt.plot(cost_log)
 plt.show()
