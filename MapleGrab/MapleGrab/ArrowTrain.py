@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import ArrowNet
 import ArrowClassifier
+import MapleGrab
 import matplotlib.pyplot as plt
 import random
 import cv2
@@ -13,7 +14,7 @@ train_batch_size = 16
 val_batch_size = 50
 training_epoches = 500
 saving_epoches = 10
-ARROW_PATH = ArrowClassifier.ARROW_PATH
+ARROW_PATH = MapleGrab.EDGE_PATH
 directions = ['left','right','up','down']
 types = ['full','empty']
 
