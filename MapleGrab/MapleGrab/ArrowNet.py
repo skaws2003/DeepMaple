@@ -17,7 +17,9 @@ class ArrowCNN:
             learning_rate = 0.01
             
             # Placeholders
-            self.X = tf.placeholder(tf.float32,[None,61,61,3])
+            
+            self.X_in = tf.placeholder(tf.float32,[None,61,61])
+            self.X = tf.reshape(self.X_in,[-1,61,61,1])
             self.Y = tf.placeholder(tf.float32,[None,8])
             self.is_training = tf.placeholder(tf.bool)
             xavier_initializer = tf.contrib.layers.xavier_initializer()
@@ -36,14 +38,14 @@ class ArrowCNN:
             self.accuracy = tf.reduce_mean(tf.cast(self.correct_prediction, tf.float32))
             
     def predict(self, sess, x_test, training=False):
-        return sess.run(self.logits,feed_dict={self.X: x_test, self.is_training: training})
+        return sess.run(self.logits,feed_dict={self.X_in: x_test, self.is_training: training})
 
     def get_accuracy(self, sess, x_test, y_test, training=False):
-        return sess.run(self.accuracy,feed_dict={self.X: x_test,self.Y: y_test, self.is_training: training})
+        return sess.run(self.accuracy,feed_dict={self.X_in: x_test,self.Y: y_test, self.is_training: training})
 
     def train(self, sess, x_data, y_data, training=True):
         self.train_step += 1
-        return sess.run([self.cost, self.optimizer], feed_dict={self.X: x_data, self.Y: y_data, self.is_training: training})
+        return sess.run([self.cost, self.optimizer], feed_dict={self.X_in: x_data, self.Y: y_data, self.is_training: training})
 
     def save(self, sess):
         self.saver.save(sess=sess, save_path=self.save_path+"ArrowNet", global_step=self.train_step)

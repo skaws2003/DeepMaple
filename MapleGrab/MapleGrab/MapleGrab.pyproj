@@ -39,6 +39,9 @@
     <Compile Include="ArrowWrapper.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ArrowEdge.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="debug\debug_old_class_to_new_class.py">
       <SubType>Code</SubType>
     </Compile>

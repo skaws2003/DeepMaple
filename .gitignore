@@ -242,14 +242,11 @@ ModelManifest.xml
 .fake/
 
 # Some Data files
-MapleGrab/MapleGrab/CapturedData/*.bmp
-MapleGrab/MapleGrab/CapturedData/*.txt
-MapleGrab/MapleGrab/ParsedArrow/*.bmp
-MapleGrab/MapleGrab/ParsedArrow/*.txt
-MapleGrab/MapleGrab/TaggedArrow/*.bmp
-MapleGrab/MapleGrab/TaggedArrow/*.txt
-MapleGrab/MapleGrab/Arrow/*.bmp
-MapleGrab/MapleGrab/Arrow/*.txt
+MapleGrab/MapleGrab/CapturedData/
+MapleGrab/MapleGrab/ParsedArrow/
+MapleGrab/MapleGrab/TaggedArrow/
+MapleGrab/MapleGrab/Arrow/
 MapleGrab/MapleGrab/tmp/
+MapleGrab/MapleGrab/EdgedArrow/
 MapleGrab/MapleGrab/*.zip
 MapleGrab/MapleGrab/*.7z
