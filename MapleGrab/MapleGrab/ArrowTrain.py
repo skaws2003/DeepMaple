@@ -44,6 +44,9 @@ for addr in addrs:
         elif 'empty' in addr:
             labels.append([0,0,0,0,0,0,0,1])
 
+for i in range(len(images)):
+    images[i] = cv2.cvtColor(images[i], cv2.COLOR_BGR2HSV)
+
 train_images = images[:int(0.6*len(images))]
 train_labels = labels[:int(0.6*len(labels))]
 val_images = images[int(0.6*len(images)):int(0.8*len(images))]
@@ -51,12 +54,16 @@ val_labels = labels[int(0.6*len(labels)):int(0.8*len(labels))]
 test_images = images[int(0.8*len(images)):]
 test_labels = labels[int(0.8*len(labels)):]
 
-for _ in range(5):
-    rp = random.randint(0,1000)
-    cv2.imshow("test",images[rp])
-    print(labels[rp])
+for _ in range(10):
+    h,s,v = cv2.split(images[random.randint(0,len(images)-1)])
+    #cv2.imshow('test',h)
+    #cv2.waitKey(-1)
+    #cv2.imshow('test',s)
+    #cv2.waitKey(-1)
+    cv2.imshow('test',v)
     cv2.waitKey(-1)
 
+exit(0)
 # Load Model
 print("Initializing network...")
 sess = tf.Session()

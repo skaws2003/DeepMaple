@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3c48d568-5db7-4a82-8544-841b7852d75c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MapleGrab.py</StartupFile>
+    <StartupFile>ArrowTrain.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -39,7 +39,7 @@
     <Compile Include="ArrowWrapper.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="debug_old_class_to_new_class.py">
+    <Compile Include="debug\debug_old_class_to_new_class.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FrontHandler_v2.py" />
@@ -48,6 +48,9 @@
     </Compile>
     <Compile Include="MapleImage.py" />
     <Compile Include="ParseArrow.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="debug\" />
   </ItemGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

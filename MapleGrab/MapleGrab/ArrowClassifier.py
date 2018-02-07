@@ -42,6 +42,7 @@ class ArrowClassifier:
         self.max_down = 0
         self.type_log = []      # Working log
         self.dir_log = []       # Direction log
+        self.workingFlag = 'left'
 
         self.ReadWhatToDo()     # Restore working progress
         self.ReadProgress()
@@ -49,7 +50,9 @@ class ArrowClassifier:
         # Initial setup
         self.workingFile = self.GetFilename()
         img = cv2.imread(self.workingFile)
+        print("Now working on %s"%self.workingFile)
         cv2.imshow("Arrow",img)
+        
 
     def UndoTag(self,event):
         if not self.type_log:
@@ -64,7 +67,7 @@ class ArrowClassifier:
                 self.full -= 1
                 self.left -= 1
                 self.left_full -= 1
-                self.workingFile = TAG_PATH+"left_%d.bmp"%self.left
+                self.workingFile = TAG_PATH+"left_%d.bmp"%(self.left-1)
                 os.rename(ARROW_PATH+"full_left_%d.bmp"%self.left_full, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -72,7 +75,7 @@ class ArrowClassifier:
                 self.full -= 1
                 self.right -= 1
                 self.right_full -= 1
-                self.workingFile = TAG_PATH+"right_%d.bmp"%self.right
+                self.workingFile = TAG_PATH+"right_%d.bmp"%(self.right-1)
                 os.rename(ARROW_PATH+"full_right_%d.bmp"%self.right_full, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -80,7 +83,7 @@ class ArrowClassifier:
                 self.full -= 1
                 self.up -= 1
                 self.up_full -= 1
-                self.workingFile = TAG_PATH+"up_%d.bmp"%self.up
+                self.workingFile = TAG_PATH+"up_%d.bmp"%(self.up-1)
                 os.rename(ARROW_PATH+"full_up_%d.bmp"%self.up_full, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -88,7 +91,7 @@ class ArrowClassifier:
                 self.full -= 1
                 self.down -= 1
                 self.down_full -= 1
-                self.workingFile = TAG_PATH+"down_%d.bmp"%self.down
+                self.workingFile = TAG_PATH+"down_%d.bmp"%(self.down-1)
                 os.rename(ARROW_PATH+"full_down_%d.bmp"%self.down_full, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -97,7 +100,7 @@ class ArrowClassifier:
                 self.empty -= 1
                 self.left -= 1
                 self.left_empty -= 1
-                self.workingFile = TAG_PATH+"left_%d.bmp"%self.left
+                self.workingFile = TAG_PATH+"left_%d.bmp"%(self.left-1)
                 os.rename(ARROW_PATH+"empty_left_%d.bmp"%self.left_empty, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -105,7 +108,7 @@ class ArrowClassifier:
                 self.empty -= 1
                 self.right -= 1
                 self.right_empty -= 1
-                self.workingFile = TAG_PATH+"right_%d.bmp"%self.right
+                self.workingFile = TAG_PATH+"right_%d.bmp"%(self.right-1)
                 os.rename(ARROW_PATH+"empty_right_%d.bmp"%self.right_empty, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -113,7 +116,7 @@ class ArrowClassifier:
                 self.empty -= 1
                 self.up -= 1
                 self.up_empty -= 1
-                self.workingFile = TAG_PATH+"up_%d.bmp"%self.up
+                self.workingFile = TAG_PATH+"up_%d.bmp"%(self.up-1)
                 os.rename(ARROW_PATH+"empty_up_%d.bmp"%self.up_empty, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -121,7 +124,7 @@ class ArrowClassifier:
                 self.empty -= 1
                 self.down -= 1
                 self.down_empty -= 1
-                self.workingFile = TAG_PATH+"down_%d.bmp"%self.down
+                self.workingFile = TAG_PATH+"down_%d.bmp"%(self.down-1)
                 os.rename(ARROW_PATH+"empty_down_%d.bmp"%self.down_empty, self.workingFile)
                 img = cv2.imread(self.workingFile)
                 cv2.imshow("Arrow",img)
@@ -199,18 +202,22 @@ class ArrowClassifier:
         if self.left < self.max_left:
             filename = TAG_PATH + "left_%d.bmp"%self.left
             self.left += 1
+            self.workingFlag = 'left'
             return filename
         if self.right < self.max_right:
             filename = TAG_PATH + "right_%d.bmp"%self.right
             self.right += 1
+            self.workingFlag = 'right'
             return filename
         if self.up < self.max_up:
             filename = TAG_PATH + "up_%d.bmp"%self.up
             self.up += 1
+            self.workingFlag = 'up'
             return filename
         if self.down < self.max_down:
             filename = TAG_PATH + "down_%d.bmp"%self.down
             self.down += 1
+            self.workingFlag = 'down'
             return filename
         print("Now every arrows are classified.")
         print("Program ends in..")
@@ -218,6 +225,7 @@ class ArrowClassifier:
             print(str(5-i))
             time.sleep(1)
         exit(0)
+
     def ReadProgress(self):
         try:
             arrow_log = open(ARROW_PATH+ARROW_LOG,'r')
@@ -243,6 +251,23 @@ class ArrowClassifier:
 
     def saveProgress(self):
         print("Save start...")
+        if not self.dir_log:         # If there is no working log, just return.
+            return
+
+        left = self.left
+        right = self.right
+        up = self.up
+        down = self.down
+
+        working = self.dir_log.pop()
+        if working is 'left':
+            left = self.left-1
+        elif working is 'right':
+            right = self.right-1
+        elif working is 'up':
+            up = self.up-1
+        elif working is 'down':
+            down = self.down-1
         arrow_log = open(ARROW_PATH + ARROW_LOG,'w')
         arrow_log.write("%d\n" % self.full)
         arrow_log.write("%d\n" % self.empty)
