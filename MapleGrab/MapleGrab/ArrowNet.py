@@ -17,7 +17,7 @@ class ArrowCNN:
             learning_rate = 0.01
             
             # Placeholders
-            self.X = tf.placeholder(tf.float32,[None,61,61,3])
+            self.X = tf.placeholder(tf.float32,[None,61,61,1])
             self.Y = tf.placeholder(tf.float32,[None,8])
             self.is_training = tf.placeholder(tf.bool)
             xavier_initializer = tf.contrib.layers.xavier_initializer()

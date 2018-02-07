@@ -23,7 +23,7 @@ random.shuffle(addrs)
 labels = []
 images = []
 for addr in addrs:
-    images.append(cv2.imread(addr))
+    images.append(cv2.imread(addr,0))
     if 'left' in addr:
         if 'full' in addr:
             labels.append([1,0,0,0,0,0,0,0])
@@ -55,16 +55,6 @@ val_labels = labels[int(0.6*len(labels)):int(0.8*len(labels))]
 test_images = images[int(0.8*len(images)):]
 test_labels = labels[int(0.8*len(labels)):]
 
-for _ in range(10):
-    h,s,v = cv2.split(images[random.randint(0,len(images)-1)])
-    #cv2.imshow('test',h)
-    #cv2.waitKey(-1)
-    #cv2.imshow('test',s)
-    #cv2.waitKey(-1)
-    cv2.imshow('test',v)
-    cv2.waitKey(-1)
-
-exit(0)
 # Load Model
 print("Initializing network...")
 sess = tf.Session()
