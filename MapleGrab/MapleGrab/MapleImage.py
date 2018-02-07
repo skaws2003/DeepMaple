@@ -41,8 +41,9 @@ class MapleCapture:          # 나중에 MapleImageHandler로 바꿀 것
     # List of other variables
     # self.img_cache = temporary saves captured image
 
-    def __init__(self):
+    def __init__(self,double = False):
         self.set_window_pos()
+        self.double = double
 
     def set_window_pos(self):
         """
@@ -54,7 +55,7 @@ class MapleCapture:          # 나중에 MapleImageHandler로 바꿀 것
         logo = cv2.imread("./Data/Logo.PNG")
         logo_position = match_template_bgr(screen,logo,0.9)
         if logo_position == None:
-            print("[MapleCapture] No logo found. Please adjust the factor.")
+            print("[MapleCapture] No logo found. If you are not using double monitor,\nPlease adjust the factor.")
             MapleCapture.pos_factor = (0,0)
             MapleCapture.pos_factor_extended = (0,0,0,0)
             print("[MapleCapture] calibration set to (0,0)")
@@ -72,7 +73,11 @@ class MapleCapture:          # 나중에 MapleImageHandler로 바꿀 것
         Fields
         - format: the format of returned image(0:OpenCV,1:PIL,2:Gray(OpenCV))
         """
-        pil_image = ImageGrab.grab(bbox=tuple_addition(MapleCapture.DEFAULT_POS,MapleCapture.pos_factor_extended))
+        if self.double == False:
+            pil_image = ImageGrab.grab(bbox=tuple_addition(MapleCapture.DEFAULT_POS,MapleCapture.pos_factor_extended))
+        else:
+            pil_image = ImageGrab.grab()
+
         if format == 0:
             image = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
         elif format == 1:

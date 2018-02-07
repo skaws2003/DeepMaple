@@ -16,7 +16,7 @@ if command == 'cap':
     print("\tLeft click to capture")
     print("\tRight click to undo capture")
     print("\tScroll click to adjust window position") 
-    front = fh.Front()
+    front = fh.Front(double=True)
     front.root.mainloop()
 elif command == 'par':
     parser = pa.Parser()

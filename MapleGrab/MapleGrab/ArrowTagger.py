@@ -41,6 +41,11 @@ class ArrowTagger:
 
 
     def UndoTag(self,event):
+
+        if not self.log:
+            print("Nothing to undo")
+            return
+
         print("\tUndo")
         self.toTag -= 1
         last_job = self.log.pop()

@@ -9,7 +9,7 @@ CAPTURE_LOG = "NumCapture.txt"
 
 class Front:
     save_path = CAPTURE_PATH
-    def __init__(self):
+    def __init__(self,double=False):
         # UI initialization
         self.root= Tk()
         self.frame = Frame(self.root, width=300, height=300)
@@ -19,7 +19,7 @@ class Front:
         self.frame.pack()
 
         # Object for screenshot
-        self.map = MapleImage.MapleCapture()
+        self.map = MapleImage.MapleCapture(double=double)
         
         # Screenshot number
         self.numCapture = 0
@@ -63,7 +63,7 @@ class Front:
         Handles right click. Undo last capture.
         Returns the label of the capture deleted.
         """
-        if self.numCapture <= 1:
+        if self.numCapture < 1:
             print("No files to delete")
             return None
         os.remove(CAPTURE_PATH + CAPTURE_NAME % (self.setNum, self.numCapture-1))
